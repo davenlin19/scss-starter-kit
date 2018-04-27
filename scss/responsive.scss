@@ -1,0 +1,104 @@
+/**
+ * Phone: show
+ * Tablet: hide
+ * Desktop: hide
+**/
+.visibility-phone-only {
+    @extend .hidden-tablet-up;
+}
+
+/**
+ * Phone: hide
+ * Tablet: show
+ * Desktop: hide
+**/
+.visibility-tablet-only {
+    display: none;
+
+    @include breakpoint-up(tablet) {
+        display: inline-block;
+    }
+
+    @include breakpoint-up(desktop) {
+        display: none;
+    }
+}
+
+/**
+ * Phone: hide
+ * Tablet: hide
+ * Desktop: show
+**/
+.visibility-desktop-only {
+    @extend .hidden-tablet-down;
+}
+
+/**
+ * Phone: hide
+ * Tablet: show
+ * Desktop: show
+**/
+.hidden-phone-down {
+    display: none;
+
+    @include breakpoint-up(tablet) {
+        display: inline-block;
+    }
+}
+
+/**
+ * Phone: hide
+ * Tablet: hide
+ * Desktop: show
+**/
+.hidden-tablet-down {
+    display: none;
+
+    @include breakpoint-up(desktop) {
+        display: inline-block;
+    }
+}
+
+/**
+ * Phone: hide
+ * Tablet: hide
+ * Desktop: hide
+**/
+.hidden-desktop-down {
+    display: none;
+}
+
+/**
+ * Phone: hide
+ * Tablet: hide
+ * Desktop: hide
+**/
+.hidden-phone-up {
+    display: none;
+}
+
+/**
+ * Phone: show
+ * Tablet: hide
+ * Desktop: hide
+**/
+.hidden-tablet-up {
+    display: inline-block;
+
+    @include breakpoint-up(tablet) {
+        display: none;
+    }
+}
+
+/**
+ * Phone: show
+ * Tablet: show
+ * Desktop: hide
+**/
+.hidden-desktop-up {
+    display: inline-block;
+
+    @include breakpoint-up(desktop) {
+        display: none;
+    }
+}

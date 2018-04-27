@@ -1,0 +1,41 @@
+$grid-breakpoints: (
+	phone: 0,
+	large_phone: 375px,
+	tablet: 480px,
+	large_tablet: 672px,
+	x_large_tablet: 768px,
+	desktop: 840px,
+	medium_desktop: 980px,
+	large_desktop: 1280px
+) !default;
+
+/**
+ * Check whether $name is in the $grid-breakpoints or not
+ * If yes, returns the corresponding size
+ * Otherwise, return null
+ * @param {string} $name: breakpoint's name
+ * @param {$breakpoints} $breakpoints: breakpoints' array
+ * @return {string}
+**/
+@function get-breakpoint($name, $breakpoints: $grid-breakpoints) {
+	$breakpoint: map-get($breakpoints, $name);
+	@return if($breakpoint != 0, $breakpoint, null);
+}
+
+/**
+ * Get media query that corresponds with the input breakpoint
+ * @param {string} $name: breakpoint's name
+ * @param {$breakpoints} $breakpoints: breakpoints' array
+**/
+@mixin breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+	$min: get-breakpoint($name, $breakpoints);
+	@if $min {
+		@media (min-width: $min) {
+			@content;
+		}
+	} @else {
+		@media (min-width: $name + 'px') {
+			@content;
+		}
+	}
+}
